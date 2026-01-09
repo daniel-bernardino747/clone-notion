@@ -2,6 +2,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddServerSideBlazor();
+builder.Services.AddScoped<CloneNotion.Services.NotificationService>();
 
 var app = builder.Build();
 
@@ -19,6 +21,10 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
+
+
+app.MapBlazorHub();
+
 
 app.MapControllerRoute(
     name: "default",

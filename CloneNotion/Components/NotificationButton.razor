@@ -1,0 +1,78 @@
+
+<button class="btn btn-primary" @onclick="ShowNotification">
+    @if (PermissionGranted) {
+        <span>Enviar Notificação</span>
+    } else {
+        <span>Solicitar Permissão</span>
+    }
+</button>
+
+@if (!string.IsNullOrEmpty(ErrorMessage)) {
+    <div class="alert alert-danger">@ErrorMessage</div>
+}
+
+@if (Loading) {
+    <div class="alert alert-info">Carregando...</div>
+}
+
+@code {
+    [Inject] public required CloneNotion.Services.NotificationService NotificationService { get; set; }
+    private bool PermissionGranted { get; set; } = false;
+
+    private bool Loading { get; set; } = false;
+
+    private string? ErrorMessage { get; set; } = string.Empty;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+     {
+        if (firstRender) {
+            await LoadPermission();
+        }
+     }
+    private async Task LoadPermission()
+    {
+        try {
+            Loading = true;
+            StateHasChanged();
+            PermissionGranted = await NotificationService.CheckPermissionAsync();
+
+        } catch (Exception ex) {
+            ErrorMessage = $"Erro ao carregar permissão: {ex.Message}";
+        } finally {
+            Loading = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task ShowNotification()
+    {
+        try {
+            ErrorMessage = string.Empty;
+            
+            if (!PermissionGranted) {
+                var permission = await NotificationService.RequestPermissionAsync();
+                PermissionGranted = permission == "granted";
+                
+                if (permission == "denied") {
+                    ErrorMessage = "Permissão negada. Por favor, habilite as notificações nas configurações do navegador.";
+                } else if (permission == "default") {
+                    ErrorMessage = "Permissão não foi concedida. Tente novamente.";
+                }
+                
+                StateHasChanged();
+            }
+
+            if (PermissionGranted) {
+                await NotificationService.ShowNotificationAsync(
+                    "Clone Notion",
+                    "Está funcionando!"
+                );
+                ErrorMessage = string.Empty;
+                StateHasChanged();
+            }
+        } catch (Exception ex) {
+            ErrorMessage = $"Erro ao mostrar notificação: {ex.Message}";
+            StateHasChanged();
+        }
+    }
+}
