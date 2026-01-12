@@ -1,0 +1,128 @@
+<header class="notion-header">
+    <div class="header-container">
+        <div class="header-logo">
+            <a href="/">
+                <img src="/images/notion-logo.svg" alt="Notion" />
+            </a>
+        </div>
+        <nav class="header-nav">
+            <div class="nav-item dropdown" @onmouseenter="@(() => showNotionDropdown = true)" @onmouseleave="@(() => showNotionDropdown = false)">
+                <a href="/" class="nav-link">
+                    Notion
+                    <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                @if (showNotionDropdown)
+                {
+                    <div class="dropdown-mega-menu" @onmouseenter="@(() => showNotionDropdown = true)" @onmouseleave="@(() => showNotionDropdown = false)">
+                        <div class="dropdown-content">
+                            <div class="dropdown-section">
+                                <h3 class="dropdown-section-title">Recursos</h3>
+                                <div class="dropdown-columns">
+                                    <div class="dropdown-column">
+                                        <a href="/ai" class="dropdown-item-rich">
+                                            <span class="dropdown-item-title">IA do Notion</span>
+                                            <span class="dropdown-item-desc">Crie, escreva, automatize</span>
+                                        </a>
+                                        <a href="/agents" class="dropdown-item-rich">
+                                            <span class="dropdown-item-title">Agentes</span>
+                                            <span class="dropdown-item-desc">Lida com tarefas manuais</span>
+                                        </a>
+                                        <a href="/enterprise-search" class="dropdown-item-rich">
+                                            <span class="dropdown-item-title">Busca Enterprise</span>
+                                            <span class="dropdown-item-desc">Encontre respostas instantaneamente</span>
+                                        </a>
+                                        <a href="/ai-notes" class="dropdown-item-rich">
+                                            <span class="dropdown-item-title">Anotações IA</span>
+                                            <span class="dropdown-item-desc">Redigido impecavelmente por IA</span>
+                                        </a>
+                                    </div>
+                                    <div class="dropdown-column">
+                                        <a href="/documents" class="dropdown-item-rich">
+                                            <span class="dropdown-item-title">Documentos</span>
+                                            <span class="dropdown-item-desc">Simples e eficiente</span>
+                                        </a>
+                                        <a href="/knowledge-base" class="dropdown-item-rich">
+                                            <span class="dropdown-item-title">Base de conhecimento</span>
+                                            <span class="dropdown-item-desc">Centralize seu conhecimento</span>
+                                        </a>
+                                        <a href="/projects" class="dropdown-item-rich">
+                                            <span class="dropdown-item-title">Projetos</span>
+                                            <span class="dropdown-item-desc">Gerencie qualquer projeto</span>
+                                        </a>
+                                        <a href="/sites" class="dropdown-item-rich">
+                                            <span class="dropdown-item-title">Sites</span>
+                                            <span class="dropdown-item-desc">Coloque suas ideias online</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-section">
+                                <h3 class="dropdown-section-title">Começar a usar</h3>
+                                <div class="dropdown-getting-started">
+                                    <a href="/ai-use-cases" class="dropdown-item-rich">
+                                        <span class="dropdown-item-title">Explore os casos de uso de IA</span>
+                                        <span class="dropdown-item-desc">O que a IA do Notion pode fazer</span>
+                                    </a>
+                                    <a href="/marketplace" class="dropdown-item-rich">
+                                        <span class="dropdown-item-title">Procurar no marketplace</span>
+                                        <span class="dropdown-item-desc">Modelos para tudo</span>
+                                    </a>
+                                    <a href="/integrations" class="dropdown-item-rich">
+                                        <span class="dropdown-item-title">Ver integrações</span>
+                                        <span class="dropdown-item-desc">Conecte seus aplicativos com o Notion</span>
+                                    </a>
+                                    <a href="/web-clipper" class="dropdown-item-rich">
+                                        <span class="dropdown-item-title">Baixar o Web Clipper</span>
+                                        <span class="dropdown-item-desc">Salve conteúdos da web no Notion</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-promo">
+                            <h4 class="dropdown-promo-title">Teste o aplicativo desktop e desfrute de uma experiência mais ágil</h4>
+                            <button class="dropdown-promo-button">Baixar aplicativo</button>
+                            <div class="dropdown-promo-image">
+                                <img src="/images/desktop-app-promo.svg" alt="Desktop App" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <a href="/Mail" class="nav-link">Mail</a>
+            <a href="/Calendar" class="nav-link">Calendar</a>
+            <a href="/IA" class="nav-link">IA</a>
+            <a href="/Enterprise" class="nav-link">Enterprise</a>
+            <a href="/Prices" class="nav-link">Preços</a>
+            <div class="nav-item dropdown" @onmouseenter="@(() => showExploreDropdown = true)" @onmouseleave="@(() => showExploreDropdown = false)">
+                <a href="/Explore" class="nav-link">
+                    Explorar
+                    <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                @if (showExploreDropdown)
+                {
+                    <div class="dropdown-menu">
+                        <a href="/blog" class="dropdown-item">Blog</a>
+                        <a href="/guides" class="dropdown-item">Guias</a>
+                        <a href="/community" class="dropdown-item">Comunidade</a>
+                    </div>
+                }
+            </div>
+            <a href="/SupportDemo" class="nav-link">Solicite uma demonstração</a>
+        </nav>
+        <div class="header-actions">
+            <a href="/login" class="login-link">Fazer login</a>
+            <button class="btn-primary" @onclick="@(() => Navigation?.NavigateTo("/signup"))">Use o Notion de graça</button>
+        </div>
+    </div>
+</header>
+
+@code {
+    [Inject] private NavigationManager? Navigation { get; set; }
+
+    private bool showNotionDropdown = false;
+    private bool showExploreDropdown = false;
+}
